@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mean Difference Value Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+    <div id="chart"></div>
+
+    <script>
+        // Define the chart data
+        var options = {
+            chart: {
+                type: 'line'
+            },
+            series: [{
+                name: 'Mean Difference Value',
+                data: [2.85, 3.36, 2.67, 1.73, 2.34, 2.56, 3.02, 2.63, 2.65, 3.05]
+            }],
+            xaxis: {
+                categories: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+            }
+        };
+
+        // Create the chart
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+</body>
+</html>
