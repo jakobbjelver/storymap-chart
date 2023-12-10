@@ -3,107 +3,10 @@
 <head>
     <title>Country Comparison Chart</title>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/papaparse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
     <div id="chart"></div>
-
-    <script>
-        // Function to process CSV data
-        function processData(allText) {
-            var allTextLines = allText.split(/\r\n|\n/);
-            var headers = allTextLines[0].split(',');
-            var lines = [];
-
-            for (var i=1; i<allTextLines.length; i++) {
-                var data = allTextLines[i].split(',');
-                if (data.length == headers.length) {
-                    lines.push(data);
-                }
-            }
-
-            // Extract data for Portugal and Sweden
-            var portugalData = [];
-            var swedenData = [];
-            // Assuming certain 'geo' codes belong to Portugal and others to Sweden
-            // Update these lists with the actual 'geo' codes for each country
-            var portugalRegions = ['PT11', 'PT15', 'PT16', 'PT17', 'PT18'];
-            var swedenRegions = ['SE11', 'SE12', 'SE21', 'SE22', 'SE23']; // Replace with actual codes
-
-            lines.forEach(function(line) {
-                var geo = line[0];
-                var values = line.slice(1).map(Number);
-                if (portugalRegions.includes(geo)) {
-                    portugalData.push(values);
-                } else if (swedenRegions.includes(geo)) {
-                    swedenData.push(values);
-                }
-            });
-
-            // Calculate mean values for each year for Portugal and Sweden
-            var portugalMean = [], swedenMean = [];
-            for (var year = 0; year < portugalData[0].length; year++) {
-                var portugalSum = 0, swedenSum = 0;
-                var portugalCount = 0, swedenCount = 0;
-                portugalData.forEach(function(region) {
-                    if (!isNaN(region[year])) {
-                        portugalSum += region[year];
-                        portugalCount++;
-                    }
-                });
-                swedenData.forEach(function(region) {
-                    if (!isNaN(region[year])) {
-                        swedenSum += region[year];
-                        swedenCount++;
-                    }
-                });
-                portugalMean.push(portugalSum / portugalCount);
-                swedenMean.push(swedenSum / swedenCount);
-            }
-
-            return { portugalMean, swedenMean };
-        }
-
-        // Load CSV file and create the chart
-        Papa.parse('LabourSlackDifferences.csv', {
-            download: true,
-            complete: function(results) {
-                var data = processData(results.data);
-
-                // Define the chart data
-                var options = {
-                    chart: {
-                        type: 'line',
-                        toolbar: {
-                            show: false
-                        }
-                    },
-                    stroke: {
-                        curve: 'smooth'
-                    },
-                    series: [
-                        {
-                            name: 'Portugal',
-                            data: data.portugalMean,
-                            colors: ['#FF0000', '#008000'] // Red and Green
-                        },
-                        {
-                            name: 'Sweden',
-                            data: data.swedenMean,
-                            colors: ['#0000FF', '#FFFF00'] // Blue and Yellow
-                        }
-                    ],
-                    xaxis: {
-                        categories: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
-                    }
-                };
-
-                // Create the chart
-                var chart = new ApexCharts(document.querySelector("#chart"), options);
-                chart.render();
-            }
-        });
-    </script>
+    <script src="script.js"></script> 
 </body>
 </html>
-
