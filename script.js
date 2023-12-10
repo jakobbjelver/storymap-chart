@@ -94,24 +94,6 @@ Papa.parse('LabourSlackDifferences.csv', {
                             }
                         }
                     },
-                    fill: {
-                        type: "gradient",
-                        gradient: {
-                            type: "vertical",
-                            colorStops: [
-                                {
-                                    opacity: 1,
-                                    offset: 0,
-                                    color: "#ff75f8"
-                                },
-                                {
-                                    opacity: 1,
-                                    offset: 100,
-                                    color: "#73beff"
-                                }
-                            ]
-                        }
-                    },
                 };
 
                 // Create the chart
