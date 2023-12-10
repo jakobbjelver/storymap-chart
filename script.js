@@ -64,8 +64,6 @@ Papa.parse('LabourSlackDifferences.csv', {
                             show: false
                         },
                         fontFamily: 'Open Sans, sans-serif', // Set the font family to Open Sans
-                        height: "200px",
-                        width: "300px"
                     },
                     stroke: {
                         curve: 'smooth'
