@@ -68,7 +68,7 @@ Papa.parse('LabourSlackDifferences.csv', {
                     stroke: {
                         curve: 'smooth'
                     },
-                    colors: ['#ff75f8', '#73beff'], // Red, Yellow for Sweden, Blue, Green for Portugal
+                    colors: ['#DF2A43', '#81C8CF'], // Red, Yellow for Sweden, Blue, Green for Portugal
                     series: [
                         {
                             name: 'Portugal',
